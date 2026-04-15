@@ -1,0 +1,176 @@
+/* ============================================================
+   Klaro Cookie Banner – Digital-Swipe Branding Override
+   Überschreibt das Standard-Klaro-Design mit dem DS-Design
+   ============================================================ */
+
+/* ── Banner (Cookie-Hinweis unten) ─────────────────────────── */
+.klaro .cookie-notice {
+  background: #ffffff !important;
+  border-top: 3px solid #22c55e !important;
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.10) !important;
+  padding: 18px 24px !important;
+  font-family: 'Inter', 'Helvetica Neue', sans-serif !important;
+}
+
+.klaro .cookie-notice p {
+  color: #374151 !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  margin: 0 0 12px 0 !important;
+}
+
+/* ── Buttons im Banner ──────────────────────────────────────── */
+.klaro .cookie-notice .cn-buttons {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+.klaro .cookie-notice button.cm-btn-success,
+.klaro .cookie-notice button.cm-btn-accept-all {
+  background: #22c55e !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 9px 18px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
+}
+
+.klaro .cookie-notice button.cm-btn-success:hover,
+.klaro .cookie-notice button.cm-btn-accept-all:hover {
+  background: #16a34a !important;
+}
+
+.klaro .cookie-notice button.cm-btn-decline,
+.klaro .cookie-notice button[data-toggle="decline"] {
+  background: transparent !important;
+  color: #6b7280 !important;
+  border: 1.5px solid #d1d5db !important;
+  border-radius: 10px !important;
+  padding: 9px 18px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+.klaro .cookie-notice button.cm-btn-decline:hover {
+  border-color: #9ca3af !important;
+  color: #374151 !important;
+}
+
+.klaro .cookie-notice .cn-learn-more {
+  color: #22c55e !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+/* ── Modal (Einstellungsdialog) ──────────────────────────────── */
+.klaro .cookie-modal {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif !important;
+}
+
+.klaro .cookie-modal .cm-modal {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+  max-width: 520px !important;
+  overflow: hidden !important;
+}
+
+.klaro .cookie-modal .cm-header {
+  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+  padding: 20px 24px !important;
+}
+
+.klaro .cookie-modal .cm-header h1 {
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+}
+
+.klaro .cookie-modal .cm-body {
+  padding: 20px 24px !important;
+}
+
+.klaro .cookie-modal .cm-body p {
+  color: #6b7280 !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+/* ── Service-Einträge ────────────────────────────────────────── */
+.klaro .cookie-modal .cm-services .cm-service {
+  border: 1px solid #f3f4f6 !important;
+  border-radius: 12px !important;
+  margin-bottom: 10px !important;
+  padding: 12px 14px !important;
+  background: #f9fafb !important;
+}
+
+.klaro .cookie-modal .cm-services .cm-service .cm-service-title {
+  font-weight: 700 !important;
+  color: #111827 !important;
+  font-size: 13px !important;
+}
+
+.klaro .cookie-modal .cm-services .cm-service p {
+  color: #9ca3af !important;
+  font-size: 12px !important;
+  margin: 4px 0 0 !important;
+}
+
+/* ── Toggle-Schalter Farbe ───────────────────────────────────── */
+.klaro .cookie-modal input[type="checkbox"]:checked + label::before,
+.klaro input.required:checked ~ label::before {
+  background: #22c55e !important;
+  border-color: #22c55e !important;
+}
+
+/* ── Footer-Buttons im Modal ─────────────────────────────────── */
+.klaro .cookie-modal .cm-footer {
+  background: #f9fafb !important;
+  padding: 14px 24px !important;
+  border-top: 1px solid #f3f4f6 !important;
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.klaro .cookie-modal .cm-footer button.cm-btn-accept-all {
+  background: #22c55e !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 10px 20px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  flex: 1 !important;
+}
+
+.klaro .cookie-modal .cm-footer button.cm-btn-accept-all:hover {
+  background: #16a34a !important;
+}
+
+.klaro .cookie-modal .cm-footer button:not(.cm-btn-accept-all) {
+  background: transparent !important;
+  color: #6b7280 !important;
+  border: 1.5px solid #e5e7eb !important;
+  border-radius: 10px !important;
+  padding: 10px 16px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+}
+
+/* ── Klaro powered-by Link ausblenden ────────────────────────── */
+.klaro .cookie-modal .cm-powered-by,
+.klaro .cookie-notice .cn-powered-by {
+  display: none !important;
+}

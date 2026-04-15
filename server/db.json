@@ -1,0 +1,269 @@
+{
+  "documentTypes": {
+    "deathCertificate": {
+      "label": "Sterbeurkunde",
+      "description": "Amtliche Sterbeurkunde des Verstorbenen (PDF oder Bild)",
+      "required": true
+    },
+    "applicantId": {
+      "label": "Ausweis des Antragstellers",
+      "description": "Kopie Ihres Personalausweises oder Reisepasses (Vorder- und Rückseite)",
+      "required": true
+    },
+    "proofOfRelationship": {
+      "label": "Verwandtschaftsnachweis",
+      "description": "z.B. Heiratsurkunde, Geburtsurkunde oder Erbschein",
+      "required": true
+    },
+    "powerOfAttorney": {
+      "label": "Vollmacht / Nachlassurkunde",
+      "description": "Ggf. testamentarische Vollmacht oder Nachlassdokument",
+      "required": false
+    }
+  },
+  "platforms": [
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "category": "social_media",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg",
+      "price": 15,
+      "specs": {
+        "usernameRequired": true,
+        "emailRequired": true,
+        "profileUrlRequired": true,
+        "placeholderText": "@benutzername",
+        "profileUrlPlaceholder": "https://instagram.com/benutzername",
+        "emailPlaceholder": "konto@beispiel.de",
+        "note": "Benutzername + Profil-URL + E-Mail erforderlich"
+      },
+      "requiredDocuments": ["deathCertificate", "applicantId", "proofOfRelationship"],
+      "contactAddress": {
+        "company": "Meta Platforms Ireland Limited",
+        "department": "Trust & Safety – Special Requests",
+        "street": "4 Grand Canal Square",
+        "city": "Dublin 2",
+        "country": "Irland",
+        "email": "Über Onlineformular einreichen",
+        "onlineForm": "https://help.instagram.com/contact/1474899482730688"
+      },
+      "status": "active"
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook",
+      "category": "social_media",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png",
+      "price": 15,
+      "specs": {
+        "usernameRequired": false,
+        "emailRequired": true,
+        "profileUrlRequired": true,
+        "placeholderText": "",
+        "profileUrlPlaceholder": "https://facebook.com/profilname",
+        "emailPlaceholder": "konto@beispiel.de",
+        "note": "Profil-URL + E-Mail erforderlich"
+      },
+      "requiredDocuments": ["deathCertificate", "applicantId", "proofOfRelationship"],
+      "contactAddress": {
+        "company": "Meta Platforms Ireland Limited",
+        "department": "Trust & Safety – Special Requests",
+        "street": "4 Grand Canal Square",
+        "city": "Dublin 2",
+        "country": "Irland",
+        "email": "Über Onlineformular einreichen",
+        "onlineForm": "https://www.facebook.com/help/contact/228813257197480"
+      },
+      "status": "active"
+    },
+    {
+      "id": "x",
+      "name": "X / Twitter",
+      "category": "social_media",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5a/X_logo_2023.svg",
+      "price": 10,
+      "specs": {
+        "usernameRequired": true,
+        "emailRequired": false,
+        "profileUrlRequired": false,
+        "placeholderText": "@handle",
+        "profileUrlPlaceholder": "",
+        "emailPlaceholder": "",
+        "note": "Nur @Benutzername wird benötigt"
+      },
+      "requiredDocuments": ["deathCertificate", "applicantId"],
+      "contactAddress": {
+        "company": "Twitter International Unlimited Company",
+        "department": "Trust & Safety",
+        "street": "One Cumberland Place, Fenian Street",
+        "city": "Dublin 2, D02 AX07",
+        "country": "Irland",
+        "email": "Über Onlineformular einreichen",
+        "onlineForm": "https://help.twitter.com/forms/privacy"
+      },
+      "status": "active"
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok",
+      "category": "social_media",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg",
+      "price": 10,
+      "specs": {
+        "usernameRequired": true,
+        "emailRequired": false,
+        "profileUrlRequired": false,
+        "placeholderText": "@benutzername",
+        "profileUrlPlaceholder": "",
+        "emailPlaceholder": "",
+        "note": "Benutzername des TikTok-Kontos"
+      },
+      "requiredDocuments": ["deathCertificate", "applicantId"],
+      "contactAddress": {
+        "company": "TikTok Technology Limited",
+        "department": "Privacy & Trust",
+        "street": "10 Earlsfort Terrace",
+        "city": "Dublin 2, D02 T380",
+        "country": "Irland",
+        "email": "privacy@tiktok.com",
+        "onlineForm": "https://www.tiktok.com/legal/privacy-policy"
+      },
+      "status": "active"
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "category": "social_media",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg",
+      "price": 15,
+      "specs": {
+        "usernameRequired": false,
+        "emailRequired": true,
+        "profileUrlRequired": true,
+        "placeholderText": "",
+        "profileUrlPlaceholder": "https://linkedin.com/in/profilname",
+        "emailPlaceholder": "konto@beispiel.de",
+        "note": "Profil-URL + E-Mail erforderlich"
+      },
+      "requiredDocuments": ["deathCertificate", "applicantId", "proofOfRelationship"],
+      "contactAddress": {
+        "company": "LinkedIn Ireland Unlimited Company",
+        "department": "Member Support / Legal",
+        "street": "Wilton Place",
+        "city": "Dublin 2",
+        "country": "Irland",
+        "email": "Über Onlineformular einreichen",
+        "onlineForm": "https://www.linkedin.com/help/linkedin/ask/ts-rdmlp"
+      },
+      "status": "active"
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "category": "streaming",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+      "price": 5,
+      "specs": {
+        "usernameRequired": false,
+        "emailRequired": true,
+        "profileUrlRequired": false,
+        "placeholderText": "",
+        "profileUrlPlaceholder": "",
+        "emailPlaceholder": "konto@beispiel.de oder Telefonnummer",
+        "note": "Nur E-Mail – Netflix hat keinen Benutzernamen"
+      },
+      "requiredDocuments": ["deathCertificate", "applicantId"],
+      "contactAddress": {
+        "company": "Netflix International B.V.",
+        "department": "Customer Support / Privacy",
+        "street": "Papendorpseweg 100 B",
+        "city": "3528 BJ Utrecht",
+        "country": "Niederlande",
+        "email": "privacy@netflix.com",
+        "onlineForm": "https://help.netflix.com/de/contactus"
+      },
+      "status": "active"
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "category": "streaming",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg",
+      "price": 5,
+      "specs": {
+        "usernameRequired": true,
+        "emailRequired": true,
+        "profileUrlRequired": false,
+        "placeholderText": "Spotify-Benutzername",
+        "profileUrlPlaceholder": "",
+        "emailPlaceholder": "konto@beispiel.de",
+        "note": "Benutzername + E-Mail erforderlich"
+      },
+      "requiredDocuments": ["deathCertificate", "applicantId"],
+      "contactAddress": {
+        "company": "Spotify AB",
+        "department": "Privacy & Data Protection",
+        "street": "Regeringsgatan 19",
+        "city": "111 53 Stockholm",
+        "country": "Schweden",
+        "email": "privacy@spotify.com",
+        "onlineForm": "https://support.spotify.com"
+      },
+      "status": "active"
+    },
+    {
+      "id": "disney",
+      "name": "Disney+",
+      "category": "streaming",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg",
+      "price": 5,
+      "specs": {
+        "usernameRequired": false,
+        "emailRequired": true,
+        "profileUrlRequired": false,
+        "placeholderText": "",
+        "profileUrlPlaceholder": "",
+        "emailPlaceholder": "konto@beispiel.de",
+        "note": "Nur E-Mail – Disney+ hat keinen Benutzernamen"
+      },
+      "requiredDocuments": ["deathCertificate", "applicantId"],
+      "contactAddress": {
+        "company": "The Walt Disney Company Limited",
+        "department": "Privacy & Customer Relations",
+        "street": "3 Queen Caroline Street",
+        "city": "London W6 9PE",
+        "country": "Vereinigtes Königreich",
+        "email": "privacy@disneyplus.com",
+        "onlineForm": "https://help.disneyplus.com"
+      },
+      "status": "active"
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "category": "streaming",
+      "logoUrl": "https://www.vectorlogo.zone/logos/youtube/youtube-icon.svg",
+      "price": 10,
+      "specs": {
+        "usernameRequired": false,
+        "emailRequired": true,
+        "profileUrlRequired": true,
+        "placeholderText": "",
+        "profileUrlPlaceholder": "https://youtube.com/@kanalname",
+        "emailPlaceholder": "gmail@gmail.com",
+        "note": "Kanal-URL + Gmail-Adresse erforderlich"
+      },
+      "requiredDocuments": ["deathCertificate", "applicantId", "proofOfRelationship"],
+      "contactAddress": {
+        "company": "Google Ireland Limited",
+        "department": "Trust & Safety – Deceased User Support",
+        "street": "Gordon House, Barrow Street",
+        "city": "Dublin 4",
+        "country": "Irland",
+        "email": "Über Google-Formular einreichen",
+        "onlineForm": "https://support.google.com/accounts/troubleshooter/6357590"
+      },
+      "status": "active"
+    }
+  ]
+}
