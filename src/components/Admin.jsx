@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, ToggleLeft, ToggleRight, X, Save } from 'lucide-react';
 
-const API = 'http://localhost:3001/api/admin/platforms';
+const API = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api/admin/platforms` : 'http://localhost:3001/api/admin/platforms';
 
 const Admin = ({ onClose }) => {
   const [platforms, setPlatforms] = useState([]);

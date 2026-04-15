@@ -69,7 +69,7 @@ const Step7_Payment = ({ data, onSuccess, platformMeta = [] }) => {
 
   useEffect(() => {
     // Initialize Stripe session dynamically
-    fetch('http://localhost:3001/api/create-payment-intent', {
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/create-payment-intent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ selectedPlatforms: data.platforms })

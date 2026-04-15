@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Loader2 } from 'lucide-react';
 
-const API_URL = 'http://localhost:3001/api/platforms';
+const API_URL = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api/platforms` : 'http://localhost:3001/api/platforms';
 
 const Step1 = ({ data, onUpdate, onPlatformsLoaded }) => {
   const [platforms, setPlatforms] = useState([]);
