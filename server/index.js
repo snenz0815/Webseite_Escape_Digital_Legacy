@@ -45,9 +45,12 @@ async function initDB() {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS document_types (
         id VARCHAR PRIMARY KEY,
-        label VARCHAR
+        label VARCHAR,
+        description TEXT
       )
     `);
+    // Ensure description column exists if table was created before
+    await pool.query(`ALTER TABLE document_types ADD COLUMN IF NOT EXISTS description TEXT`);
 
     // Core Relation 2: platforms
     await pool.query(`
@@ -65,32 +68,40 @@ async function initDB() {
     `);
 
     // Check if platforms is empty to migrate from db.json
-    const res = await pool.query(`SELECT COUNT(*) FROM platforms`);
-    if (parseInt(res.rows[0].count) === 0) {
+    const platformCount = await pool.query(`SELECT COUNT(*) FROM platforms`);
+    const docTypeCount = await pool.query(`SELECT COUNT(*) FROM document_types`);
+    
+    if (parseInt(platformCount.rows[0].count) === 0 || parseInt(docTypeCount.rows[0].count) === 0) {
       console.log('Migrating data from local db.json into relational tables...');
       const localData = JSON.parse(readFileSync(DB_PATH, 'utf-8'));
       
       // Seed doc types
       for (const [key, val] of Object.entries(localData.documentTypes || {})) {
-        await pool.query(`INSERT INTO document_types (id, label) VALUES ($1, $2) ON CONFLICT DO NOTHING`, [key, val]);
+        await pool.query(`
+          INSERT INTO document_types (id, label, description) 
+          VALUES ($1, $2, $3) 
+          ON CONFLICT (id) DO UPDATE SET label = EXCLUDED.label, description = EXCLUDED.description
+        `, [key, val.label, val.description]);
       }
 
-      // Seed platforms
-      for (const p of localData.platforms) {
-        await pool.query(`
-          INSERT INTO platforms (id, name, category, logo_url, price, specs, required_documents, contact_address, status)
-          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-        `, [
-          p.id, 
-          p.name, 
-          p.category, 
-          p.logoUrl || '', 
-          p.price || 0, 
-          p.specs || {}, 
-          p.requiredDocuments ? JSON.stringify(p.requiredDocuments) : null,
-          p.contactAddress ? JSON.stringify(p.contactAddress) : null,
-          p.status || 'active'
-        ]);
+      // Seed platforms (only if empty)
+      if (parseInt(platformCount.rows[0].count) === 0) {
+        for (const p of localData.platforms) {
+          await pool.query(`
+            INSERT INTO platforms (id, name, category, logo_url, price, specs, required_documents, contact_address, status)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+          `, [
+            p.id, 
+            p.name, 
+            p.category, 
+            p.logoUrl || '', 
+            p.price || 0, 
+            p.specs || {}, 
+            p.requiredDocuments ? JSON.stringify(p.requiredDocuments) : null,
+            p.contactAddress ? JSON.stringify(p.contactAddress) : null,
+            p.status || 'active'
+          ]);
+        }
       }
       console.log('Migration completed successfully!');
     }
@@ -107,7 +118,9 @@ async function getDocumentTypes() {
   if (pool) {
     const res = await pool.query('SELECT * FROM document_types');
     const dts = {};
-    res.rows.forEach(r => { dts[r.id] = r.label; });
+    res.rows.forEach(r => { 
+      dts[r.id] = { label: r.label, description: r.description }; 
+    });
     return dts;
   }
   return JSON.parse(readFileSync(DB_PATH, 'utf-8')).documentTypes || {};
