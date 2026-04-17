@@ -47,11 +47,11 @@ const Step8_Success = ({ data, platformMeta }) => {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(14);
     doc.setTextColor(255, 255, 255);
-    doc.text('DS', lm + 11, 26, { align: 'center' });
+    doc.text('SW', lm + 11, 26, { align: 'center' });
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(9);
     doc.setTextColor(22, 163, 74);
-    doc.text('Digital-Swipe', lm + 26, 21);
+    doc.text('Social-Wipe', lm + 26, 21);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
@@ -66,7 +66,7 @@ const Step8_Success = ({ data, platformMeta }) => {
     if (p2.phone) doc.text(p2.phone, rm, 45, { align: 'right' });
 
     setGray(7);
-    doc.text('Digital-Swipe – Im Auftrag des Antragstellers', lm, 52);
+    doc.text('Social-Wipe – Im Auftrag des Antragstellers', lm, 52);
     setBody(10);
     doc.text(addr.company || meta.name || platformId, lm, 60);
     if (addr.department) { setBody(9); doc.text(addr.department, lm, 65); }
@@ -166,7 +166,7 @@ const Step8_Success = ({ data, platformMeta }) => {
       doc.line(lm, footerY - 4, rm, footerY - 4);
       doc.setLineWidth(0.2);
       setGray(7);
-      doc.text(`Digital-Swipe | Erstellt am ${date} | DSGVO-konform`, lm, footerY);
+      doc.text(`Social-Wipe | Erstellt am ${date} | DSGVO-konform`, lm, footerY);
       doc.text(`Seite ${i} von ${totalPages}`, rm, footerY, { align: 'right' });
       doc.text(`Antragsteller: ${p2.firstName} ${p2.lastName}`, lm, footerY + 4);
     }

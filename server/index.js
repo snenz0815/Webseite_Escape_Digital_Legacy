@@ -168,7 +168,7 @@ app.post('/api/create-payment-intent', async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalAmount * 100, // EUR in cents
       currency: 'eur',
-      description: `Digital-Swipe Account-Abmeldung: ${selectedPlatforms.join(', ')}`,
+      description: `Social-Wipe Account-Abmeldung: ${selectedPlatforms.join(', ')}`,
       automatic_payment_methods: { enabled: true },
     });
     res.json({ clientSecret: paymentIntent.client_secret, totalAmount });

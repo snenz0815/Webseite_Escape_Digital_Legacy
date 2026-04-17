@@ -4,10 +4,16 @@ import MultiStepForm from './components/MultiStepForm';
 import Footer from './components/Footer';
 import Admin from './components/Admin';
 import { Shield, Zap, GraduationCap } from 'lucide-react';
+import Maintenance from './components/Maintenance';
 
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(localStorage.getItem('site_unlocked') === 'true');
+
+  if (!isUnlocked) {
+    return <Maintenance onUnlock={() => setIsUnlocked(true)} />;
+  }
 
   return (
     <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">

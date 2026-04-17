@@ -1,4 +1,4 @@
-// Klaro Cookie-Consent Konfiguration für Digital-Swipe
+// Klaro Cookie-Consent Konfiguration für Social-Wipe
 // Dokumentation: https://klaro.org/docs
 
 const klaroConfig = {
@@ -8,7 +8,7 @@ const klaroConfig = {
   // Position des Banners: 'top' oder 'bottom'
   elementID: 'klaro',
   storageMethod: 'localStorage', // 'cookie' oder 'localStorage'
-  storageName: 'klaro-digital-swipe',
+  storageName: 'klaro-social-wipe',
   cookieDomain: window.location.hostname,
   cookieExpiresAfterDays: 365,
 

@@ -8,9 +8,9 @@ const Footer = ({ onAdminClick }) => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-              D
+              S
             </div>
-            <span className="text-lg font-bold tracking-tight">Digital-Swipe</span>
+            <span className="text-lg font-bold tracking-tight">Social-Wipe</span>
           </div>
           
           <div className="flex gap-8 text-sm text-gray-500">
@@ -28,7 +28,7 @@ const Footer = ({ onAdminClick }) => {
 
           <div className="flex items-center gap-6">
             <div className="text-sm text-gray-400">
-              © {new Date().getFullYear()} Digital-Swipe.
+              © {new Date().getFullYear()} Social-Wipe.
             </div>
             {onAdminClick && (
               <button 

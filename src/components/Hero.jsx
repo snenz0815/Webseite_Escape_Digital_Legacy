@@ -14,9 +14,9 @@ const Hero = ({ onStart }) => {
         <nav className="flex items-center justify-between mb-20">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-xl">
-              D
+              S
             </div>
-            <span className="text-xl font-bold tracking-tight">Digital-Swipe</span>
+            <span className="text-xl font-bold tracking-tight">Social-Wipe</span>
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#" className="hover:text-primary-600 transition-colors">Services</a>
