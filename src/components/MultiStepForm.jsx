@@ -108,16 +108,38 @@ const MultiStepForm = ({ onBack }) => {
           if (key === 'phone') return true;
           return value && value.trim() !== '';
         });
-      case 4:
+      case 4: {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const urlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i;
+
         return formData.platforms.every(p => {
           const meta = platformMeta.find(m => m.id === p);
           const specs = meta?.specs || {};
           const vals = formData.accountDetails[p] || {};
+          
           if (specs.usernameRequired && !vals.username?.trim()) return false;
-          if (specs.emailRequired && !vals.email?.trim()) return false;
-          if (specs.profileUrlRequired && !vals.profileUrl?.trim()) return false;
+          
+          if (specs.emailRequired) {
+            if (!vals.email?.trim() || !emailRegex.test(vals.email)) return false;
+          }
+          
+          if (specs.profileUrlRequired) {
+            if (!vals.profileUrl?.trim() || !urlRegex.test(vals.profileUrl)) return false;
+            
+            // Basic platform-specific check
+            const url = vals.profileUrl.toLowerCase();
+            const platformId = p.toLowerCase();
+            if (platformId.includes('instagram') && !url.includes('instagram.com')) return false;
+            if (platformId.includes('facebook') && !url.includes('facebook.com')) return false;
+            if (platformId.includes('linkedin') && !url.includes('linkedin.com')) return false;
+            if (platformId.includes('tiktok') && !url.includes('tiktok.com')) return false;
+            if ((platformId === 'x' || platformId.includes('twitter')) && (!url.includes('twitter.com') && !url.includes('x.com'))) return false;
+            if (platformId.includes('youtube') && (!url.includes('youtube.com') && !url.includes('youtu.be'))) return false;
+          }
+          
           return true;
         });
+      }
       case 5: {
         // Collect all required doc IDs from selected platforms
         const requiredDocIds = [...new Set(

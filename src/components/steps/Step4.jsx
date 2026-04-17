@@ -5,7 +5,34 @@ const Step4 = ({ platforms, platformMeta, data, onUpdate }) => {
     onUpdate({ ...data, [platformId]: { ...(data[platformId] || {}), [field]: value } });
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all bg-white";
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const urlRegex = /^https?:\/\/[^\s/$.?#].[^\s]*$/i;
+
+  const validateUrl = (pid, url) => {
+    if (!url) return null;
+    if (!urlRegex.test(url)) return false;
+    
+    const p = pid.toLowerCase();
+    const u = url.toLowerCase();
+    if (p.includes('instagram') && !u.includes('instagram.com')) return false;
+    if (p.includes('facebook') && !u.includes('facebook.com')) return false;
+    if (p.includes('linkedin') && !u.includes('linkedin.com')) return false;
+    if (p.includes('tiktok') && !u.includes('tiktok.com')) return false;
+    if ((p === 'x' || p.includes('twitter')) && (!u.includes('twitter.com') && !u.includes('x.com'))) return false;
+    if (p.includes('youtube') && (!u.includes('youtube.com') && !u.includes('youtu.be'))) return false;
+    return true;
+  };
+
+  const validateEmail = (email) => {
+    if (!email) return null;
+    return emailRegex.test(email);
+  };
+
+  const inputClass = (isValid) => `w-full px-4 py-3 rounded-xl border transition-all bg-white outline-none focus:ring-2 ${
+    isValid === true ? 'border-green-200 focus:border-green-500 focus:ring-green-100' : 
+    isValid === false ? 'border-red-200 focus:border-red-500 focus:ring-red-100' : 
+    'border-gray-200 focus:border-primary-500 focus:ring-primary-100'
+  }`;
 
   if (platforms.length === 0) {
     return (
@@ -20,7 +47,10 @@ const Step4 = ({ platforms, platformMeta, data, onUpdate }) => {
     <div>
       <h2 className="text-3xl font-bold text-gray-900 mb-2">Account-Details</h2>
       <p className="text-gray-500 mb-3">Bitte geben Sie die Zugangsdaten der ausgewählten Plattformen an.</p>
-      <p className="text-xs text-red-500 mb-8">* Mit * markierte Felder sind Pflichtfelder</p>
+      <div className="flex flex-col gap-1 mb-8">
+        <p className="text-xs text-red-500">* Mit * markierte Felder sind Pflichtfelder</p>
+        <p className="text-[10px] text-gray-400">Hinweis: Links müssen mit http:// oder https:// beginnen.</p>
+      </div>
 
       <div className="space-y-8">
         {platforms.map((pid) => {
@@ -28,8 +58,11 @@ const Step4 = ({ platforms, platformMeta, data, onUpdate }) => {
           const specs = meta.specs || {};
           const values = data[pid] || {};
 
+          const isUrlValid = validateUrl(pid, values.profileUrl);
+          const isEmailValid = validateEmail(values.email);
+
           return (
-            <div key={pid} className="p-6 rounded-2xl border border-gray-100 bg-gray-50/50 space-y-4">
+            <div key={pid} className="p-6 rounded-2xl border border-gray-100 bg-gray-50/50 space-y-4 shadow-sm">
               {/* Platform header */}
               <div className="flex items-center gap-3 pb-2 border-b border-gray-100">
                 {meta.logoUrl && <img src={meta.logoUrl} alt={meta.name} className="w-8 h-8 object-contain" />}
@@ -50,7 +83,7 @@ const Step4 = ({ platforms, platformMeta, data, onUpdate }) => {
                     value={values.username || ''}
                     onChange={e => handleChange(pid, 'username', e.target.value)}
                     placeholder={specs.placeholderText || '@benutzername'}
-                    className={inputClass}
+                    className={inputClass(values.username ? true : null)}
                   />
                 </div>
               )}
@@ -58,15 +91,16 @@ const Step4 = ({ platforms, platformMeta, data, onUpdate }) => {
               {/* Profile URL field */}
               {specs.profileUrlRequired && (
                 <div className="space-y-1">
-                  <label className="text-sm font-bold text-gray-700">
-                    Profil-URL <span className="text-red-500">*</span>
+                  <label className="text-sm font-bold text-gray-700 flex justify-between">
+                    <span>Profil-URL <span className="text-red-500">*</span></span>
+                    {isUrlValid === false && <span className="text-[10px] text-red-500">Ungültige URL für {meta.name}</span>}
                   </label>
                   <input
                     type="url"
                     value={values.profileUrl || ''}
                     onChange={e => handleChange(pid, 'profileUrl', e.target.value)}
                     placeholder={specs.profileUrlPlaceholder || 'https://...'}
-                    className={inputClass}
+                    className={inputClass(isUrlValid)}
                   />
                 </div>
               )}
@@ -74,15 +108,16 @@ const Step4 = ({ platforms, platformMeta, data, onUpdate }) => {
               {/* Email field */}
               {specs.emailRequired && (
                 <div className="space-y-1">
-                  <label className="text-sm font-bold text-gray-700">
-                    E-Mail des Kontos <span className="text-red-500">*</span>
+                  <label className="text-sm font-bold text-gray-700 flex justify-between">
+                    <span>E-Mail des Kontos <span className="text-red-500">*</span></span>
+                    {isEmailValid === false && <span className="text-[10px] text-red-500">Ungültige E-Mail Adresse</span>}
                   </label>
                   <input
                     type="email"
                     value={values.email || ''}
                     onChange={e => handleChange(pid, 'email', e.target.value)}
                     placeholder={specs.emailPlaceholder || 'konto@beispiel.de'}
-                    className={inputClass}
+                    className={inputClass(isEmailValid)}
                   />
                 </div>
               )}
